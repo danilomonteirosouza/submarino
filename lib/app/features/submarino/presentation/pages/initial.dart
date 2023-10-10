@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:lottie/lottie.dart';
+import 'mqtt_connection.dart';
 import 'package:submarino/shared/widgets/elevatedbuttonlong.dart';
 
 class InitialScreen extends StatefulWidget {
@@ -12,6 +13,14 @@ class InitialScreen extends StatefulWidget {
 }
 
 class _InitialScreenState extends State<InitialScreen> {
+  MQTTClientWrapper client = MQTTClientWrapper(topicName, "");
+
+  @override
+  void initState() {
+    super.initState();
+    client.prepareMqttClient();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (defaultTargetPlatform == TargetPlatform.android) {
@@ -45,15 +54,19 @@ class _InitialScreenState extends State<InitialScreen> {
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: BotaoCustomizadoLong(
-                                    onPressed: () {},
-                                    texto: 'Ligar',
+                                    onPressed: () {
+                                      client.publishMessage("ligarMotor");
+                                    },
+                                    texto: 'Ligar Submarino',
                                   )),
                               Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(0, 0, 0, 10),
                                   child: BotaoCustomizadoLong(
-                                    onPressed: () {},
-                                    texto: 'Desligar',
+                                    onPressed: () {
+                                      client.publishMessage("desligarMotor");
+                                    },
+                                    texto: 'Desligar Submarino',
                                   )),
                             ],
                           )),
