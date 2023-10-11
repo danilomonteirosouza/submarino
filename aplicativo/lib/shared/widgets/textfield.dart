@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class InputCustomizado extends StatelessWidget {
-
   final TextEditingController? controller;
   final String? hint;
   final bool? obscure;
 
-  const InputCustomizado({Key? key,
+  const InputCustomizado({
+    Key? key,
     this.controller,
     this.hint,
     this.obscure,
@@ -25,9 +24,9 @@ class InputCustomizado extends StatelessWidget {
         contentPadding: const EdgeInsets.all(20),
         //labelText: "User",
         hintText: hint,
-        hintStyle: const TextStyle( // Altera a cor do texto dentro
-            color: Color(0xffA5A5A5)
-        ),
+        hintStyle: const TextStyle(
+            // Altera a cor do texto dentro
+            color: Color(0xffA5A5A5)),
         filled: true,
         fillColor: const Color(0xff320995),
         border: OutlineInputBorder(
@@ -37,14 +36,12 @@ class InputCustomizado extends StatelessWidget {
             borderSide: const BorderSide(
               color: Color(0xffA5A5A5),
             ),
-            borderRadius: BorderRadius.circular(20)
-        ),
+            borderRadius: BorderRadius.circular(20)),
         focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(
               color: Color(0xffA5A5A5),
             ),
-            borderRadius: BorderRadius.circular(20)
-        ),
+            borderRadius: BorderRadius.circular(20)),
       ),
       obscureText: obscure as bool,
     );

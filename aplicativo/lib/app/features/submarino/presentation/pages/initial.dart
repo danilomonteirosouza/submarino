@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:lottie/lottie.dart';
-import 'mqtt_connection.dart';
+import '../../../../mqtt_connection.dart';
 import 'package:submarino/shared/widgets/elevatedbuttonlong.dart';
 
 class InitialScreen extends StatefulWidget {

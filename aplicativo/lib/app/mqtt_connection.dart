@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 import 'package:typed_data/typed_data.dart';
@@ -43,11 +44,11 @@ class MQTTClientWrapper {
   // waiting for the connection, if an error occurs, print it and disconnect
   Future<void> _connectClient() async {
     try {
-      print('client connecting....');
+      debugPrint('client connecting....');
       connectionState = MqttCurrentConnectionState.connecting;
       await client.connect(user, password);
     } on Exception catch (e) {
-      print('client exception - $e');
+      debugPrint('client exception - $e');
       connectionState = MqttCurrentConnectionState.errorWhenConnecting;
       client.disconnect();
     }
@@ -55,9 +56,9 @@ class MQTTClientWrapper {
     // when connected, print a confirmation, else print an error
     if (client.connectionStatus?.state == MqttConnectionState.connected) {
       connectionState = MqttCurrentConnectionState.connected;
-      print('client connected');
+      debugPrint('client connected');
     } else {
-      print(
+      debugPrint(
           'ERROR client connection failed - disconnecting, status is ${client.connectionStatus}');
       connectionState = MqttCurrentConnectionState.errorWhenConnecting;
       client.disconnect();
@@ -76,7 +77,7 @@ class MQTTClientWrapper {
   }
 
   void _subscribeToTopic(String topicName) {
-    print('Subscribing to the $topicName topic');
+    debugPrint('Subscribing to the $topicName topic');
     client.subscribe(topicName, MqttQos.atMostOnce);
 
     // print the message when it is received
@@ -84,8 +85,8 @@ class MQTTClientWrapper {
       final MqttPublishMessage recMess = c[0].payload as MqttPublishMessage;
       var message =
           MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-      print('YOU GOT A NEW MESSAGE:');
-      print(message);
+      debugPrint('YOU GOT A NEW MESSAGE:');
+      debugPrint(message);
     });
   }
 
@@ -93,24 +94,24 @@ class MQTTClientWrapper {
     final MqttClientPayloadBuilder builder = MqttClientPayloadBuilder();
     builder.addString(message);
 
-    print('Publishing message "$message" to topic $topicName');
+    debugPrint('Publishing message "$message" to topic $topicName');
     client.publishMessage(
         topicName, MqttQos.atMostOnce, builder.payload as Uint8Buffer);
   }
 
   // callbacks for different events
   void _onSubscribed(String topic) {
-    print('Subscription confirmed for topic $topic');
+    debugPrint('Subscription confirmed for topic $topic');
     subscriptionState = MqttSubscriptionState.subscribed;
   }
 
   void _onDisconnected() {
-    print('OnDisconnected client callback - Client disconnection');
+    debugPrint('OnDisconnected client callback - Client disconnection');
     connectionState = MqttCurrentConnectionState.disconnected;
   }
 
   void _onConnected() {
     connectionState = MqttCurrentConnectionState.connected;
-    print('OnConnected client callback - Client connection was sucessful');
+    debugPrint('OnConnected client callback - Client connection was sucessful');
   }
 }
