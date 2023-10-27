@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     Timer(
-      const Duration(seconds: 4),
+      const Duration(seconds: 8),
       () => Navigator.pushReplacementNamed(context, RouteGenerator.initial),
     );
   }
@@ -26,19 +26,19 @@ class _SplashScreenState extends State<SplashScreen> {
     if (defaultTargetPlatform == TargetPlatform.android) {
       return Scaffold(
         body: Container(
-            color: const Color(0xff00ceff),
+            color: Color.fromARGB(255, 56, 57, 68),
             child: Column(
               children: <Widget>[
                 Expanded(
-                    flex: 3,
+                    flex: 10,
                     child: Align(
-                      alignment: Alignment.bottomCenter,
+                      alignment: Alignment.center,
                       child: Lottie.asset('assets/estudar.json'),
                     )),
                 const Expanded(
                   flex: 1,
                   child: Align(
-                      alignment: Alignment.center,
+                      alignment: Alignment.topCenter,
                       child: SafeArea(
                         child: Text(
                           '\u00a9Submarino',
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               children: <Widget>[
                 Expanded(
-                    flex: 2,
+                    flex: 4,
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Lottie.asset('assets/estudar.json'),

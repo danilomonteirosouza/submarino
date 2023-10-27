@@ -27,7 +27,10 @@ class _InitialScreenState extends State<InitialScreen> {
       return Scaffold(
           backgroundColor: const Color(0xff00ceff),
           appBar: AppBar(
-            title: const Text('Vamos começar?'),
+            title: const Text(
+              'O que deseja fazer, Marinheiro?',
+              style: TextStyle(height: 4.0),
+            ),
             backgroundColor: const Color(0xff00ceff),
             elevation: 0.0,
             centerTitle: true,
@@ -39,20 +42,20 @@ class _InitialScreenState extends State<InitialScreen> {
                   Column(
                     children: <Widget>[
                       Expanded(
-                          flex: 4,
+                          flex: 5,
                           child: Padding(
                             padding: EdgeInsets.zero,
                             child: Lottie.asset('assets/initial.json'),
                           )),
                       Expanded(
-                          flex: 2,
+                          flex: 4,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                      const EdgeInsets.fromLTRB(20, 0, 20, 10),
                                   child: BotaoCustomizadoLong(
                                     onPressed: () {
                                       client.publishMessage("ligarMotor");
@@ -61,12 +64,30 @@ class _InitialScreenState extends State<InitialScreen> {
                                   )),
                               Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                                      const EdgeInsets.fromLTRB(20, 0, 20, 10),
                                   child: BotaoCustomizadoLong(
                                     onPressed: () {
                                       client.publishMessage("desligarMotor");
                                     },
                                     texto: 'Desligar Submarino',
+                                  )),
+                              Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                                  child: BotaoCustomizadoLong(
+                                    onPressed: () {
+                                      client.publishMessage("ligarLed");
+                                    },
+                                    texto: 'Ligar Luzes',
+                                  )),
+                              Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                                  child: BotaoCustomizadoLong(
+                                    onPressed: () {
+                                      client.publishMessage("desligarLed");
+                                    },
+                                    texto: 'Desligar Luzes',
                                   )),
                             ],
                           )),

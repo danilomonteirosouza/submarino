@@ -15,12 +15,12 @@
 #define OLED_RST    16
 //ONBOARD LED
 #define LED_ONBOARD 25
-//MOTOR
-#define MOTOR         17
-
+//LED
+#define MOTORES         17
+#define LED             33
 // Wi-fi credentials
-const char* ssid = "FamilyLDD";
-const char* password = "JOAO0316@@!";
+const char* ssid = "ESPAÇOS 4.0";
+const char* password = "Espaco40ETE@@!";
 
 //MQTT Broker credentials
 const char* mqtt_server = "231ccd91865148f78345c07e2d7e799e.s2.eu.hivemq.cloud";
@@ -122,8 +122,10 @@ void mqtt_callbak(char* topic, byte* payload, unsigned int length) {
     }
       Serial.print(commandArrived);
       //------LED CONTROL-------------
-      if (commandArrived == "ligarMotor") {digitalWrite(MOTOR, HIGH);}
-      if (commandArrived == "desligarMotor") {digitalWrite(MOTOR, LOW);}
+      if (commandArrived == "ligarMotor") {digitalWrite(MOTORES, HIGH);}//MOTORES On
+      if (commandArrived == "desligarMotor") {digitalWrite(MOTORES, LOW);} //MOTORES off
+      if (commandArrived == "ligarLed") {digitalWrite(LED, LOW);}//LED On
+      if (commandArrived == "desligarLed") {digitalWrite(LED, HIGH);} //LED off
       Serial.println();
 }
 
@@ -134,7 +136,8 @@ void serial_setup() {
 }
 
 void output_data() {
-  pinMode(MOTOR, OUTPUT);
+  pinMode(MOTORES, OUTPUT);
+  pinMode(LED, OUTPUT);
 }
 
 void mqtt_broker_communication() {
