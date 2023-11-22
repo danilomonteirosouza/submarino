@@ -23,9 +23,9 @@ class MQTTClientWrapper {
   late MqttServerClient client;
 
   //MQTT Connection
-  String mqttUrl = '231ccd91865148f78345c07e2d7e799e.s2.eu.hivemq.cloud';
-  String user = 'submarino';
-  String password = 'Espaco40ETE@@!';
+  String mqttUrl = '34c6a6ad7e9e459e9972229b86cc8877.s2.eu.hivemq.cloud';
+  String user = 'WILLITON';
+  String password = 'Will123@';
   int port = 8883;
 
   MQTTClientWrapper(topicName, messageSend);
